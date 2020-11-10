@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import axios from "axios";
-// import { Link } from "react-router-dom";
 
 export default class EditTodo extends Component {
   constructor(props) {
@@ -22,7 +21,7 @@ export default class EditTodo extends Component {
 
   componentDidMount() {
     axios
-      .get("http://localhost:4000/todos/" + this.props.match.params.id)
+      .get("http://localhost:3000/todos/" + this.props.match.params.id)
       .then((response) => {
         this.setState({
           todo_Team: response.data.todo_Team,
@@ -70,10 +69,7 @@ export default class EditTodo extends Component {
     };
     console.log(obj);
     axios
-      .post(
-        "http://localhost:4000/todos/update/" + this.props.match.params.id,
-        obj
-      )
+      .post("http://localhost:3000/todos/" + this.props.match.params.id, obj)
       .then((res) => console.log(res.data));
 
     this.props.history.push("/");

@@ -49,6 +49,14 @@ export default class CreateTodo extends Component {
       todo_Description: "",
       todo_completed: false,
     });
+    // post("http://localhost:4000/todos/")
+    //   .then((response) => {
+    //     this.setState({ todos: response.data });
+    //   })
+    //   .catch(function (error) {
+    //     console.log(error);
+    //   });
+    // Post("src/components/todos-list.component.js");
   }
 
   render() {
@@ -61,6 +69,7 @@ export default class CreateTodo extends Component {
             <input
               type="text"
               className="form-control"
+              name="teamName"
               value={this.state.todo_Team}
               onChange={this.onChangeTodoTeam}
             />
@@ -70,6 +79,7 @@ export default class CreateTodo extends Component {
             <input
               type="text"
               className="form-control"
+              name="location"
               value={this.state.todo_Location}
               onChange={this.onChangeTodoLocation}
             />
@@ -79,6 +89,7 @@ export default class CreateTodo extends Component {
             <input
               type="text"
               className="form-control"
+              name="description"
               value={this.state.todo_Description}
               onChange={this.onChangeTodoDescription}
             />
