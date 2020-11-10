@@ -18,9 +18,7 @@ class App extends Component {
               href="https://codingthesmartway.com"
               target="_blank"
             ></a>
-            <Link to="/" className="navbar-brand">
-              MERN-Stack Todo App
-            </Link>
+            <Link to="/" className="navbar-brand"></Link>
             <div className="collpase navbar-collapse">
               <ul className="navbar-nav mr-auto">
                 <li className="navbar-item">
@@ -30,7 +28,7 @@ class App extends Component {
                 </li>
                 <li className="navbar-item">
                   <Link to="/create" className="nav-link">
-                    Create Todo
+                    Submit Info
                   </Link>
                 </li>
               </ul>
