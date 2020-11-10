@@ -38,9 +38,9 @@ todoRoutes.route("/:id").get(function (req, res) {
 todoRoutes.route("/update/:id").post(function (req, res) {
   Todo.findById(req.params.id, function (err, todo) {
     if (!todo) res.status(404).send("data is not found");
-    else todo.todo_team = req.body.todo_team;
-    todo.todo_location = req.body.todo_location;
-    todo.todo_description = req.body.todo_description;
+    else todo.todo_Team = req.body.todo_Team;
+    todo.todo_Location = req.body.todo_Location;
+    todo.todo_Description = req.body.todo_Description;
     todo.todo_completed = req.body.todo_completed;
 
     todo

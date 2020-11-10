@@ -92,5 +92,3 @@ export default class CreateTodo extends Component {
     );
   }
 }
-// checked={this.state.todo_Description === "Low"}
-// onChange={this.onChangeTodoDescription}
