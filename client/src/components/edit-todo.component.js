@@ -10,12 +10,13 @@ export default class EditTodo extends Component {
     this.onChangeTodoDescription = this.onChangeTodoDescription.bind(this);
     this.onChangeTodoCompleted = this.onChangeTodoCompleted.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
+    this.onSubmitDelete = this.onSubmitDelete.bind(this);
 
     this.state = {
       todo_Team: "",
       todo_Location: "",
       todo_Description: "",
-      todo_completed: true,
+      todo_completed: false,
     };
   }
 
@@ -69,16 +70,25 @@ export default class EditTodo extends Component {
     };
     console.log(obj);
     axios
-      .post("/todos/" + this.props.match.params.id, obj)
+      .put("/todos/" + this.props.match.params.id, obj)
       .then((res) => console.log(res.data));
 
-    this.props.history.push("/todos");
+    this.props.history.push("/todos/");
   }
+  onSubmitDelete(e) {
+    e.preventDefault();
 
+    axios.delete("/todos/" + this.props.match.params.id).then((res) => {
+      console.log(res.data);
+      this.props.history.push("/todos/");
+    });
+
+    this.props.history.push("/todos/");
+  }
   render() {
     return (
       <div>
-        <h3 align="center">Update Todo</h3>
+        <h3 align="center">Update</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
             <label>Team: </label>
@@ -126,6 +136,14 @@ export default class EditTodo extends Component {
 
           <div className="form-group">
             <input type="submit" value="Update" className="btn btn-primary" />
+          </div>
+          <div className="form-group">
+            <input
+              onClick={this.onSubmitDelete}
+              type="submit"
+              value="Delete"
+              className="btn btn-primary"
+            />
           </div>
         </form>
       </div>

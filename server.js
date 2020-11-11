@@ -37,23 +37,38 @@ todoRoutes.route("/:id").get(function (req, res) {
   });
 });
 
-todoRoutes.route("/update/:id").post(function (req, res) {
-  Todo.findById(req.params.id, function (err, todos) {
-    if (!todos) res.status(404).send("data is not found");
-    else todos.todo_Team = req.body.todo_Team;
-    todos.todo_Location = req.body.todo_Location;
-    todos.todo_Description = req.body.todo_Description;
-    todos.todo_completed = req.body.todo_completed;
-
-    todo
-      .save()
-      .then((todos) => {
-        res.json("Todo updated!");
-      })
-      .catch((err) => {
-        res.status(400).send("Update not possible");
-      });
+todoRoutes.route("/:id").put(function (req, res) {
+  console.log(req.params.id);
+  Todo.findOneAndUpdate({ _id: req.params.id }, req.body, {
+    new: true,
+  }).then((response) => {
+    console.log(response);
+    res.json(response);
   });
+
+  // if (!todos) res.status(404).send("data is not found");
+  // else todos.todo_Team = req.body.todo_Team;
+  // todos.todo_Location = req.body.todo_Location;
+  // todos.todo_Description = req.body.todo_Description;
+  // todos.todo_completed = req.body.todo_completed;
+
+  // todo
+  //   .save()
+  //   .then((todos) => {
+  //     res.json("Todo updated!");
+  //   })
+  //   .catch((err) => {
+  //     res.status(400).send("Update not possible");
+  //   });
+  // });
+});
+
+todoRoutes.route("/:id").delete(function (req, res) {
+  console.log(req.params.id);
+  Todo.findById({ _id: req.params.id })
+    .then((dbModel) => dbModel.remove())
+    .then((dbModel) => res.json(dbModel))
+    .catch((err) => res.status(422).json(err));
 });
 
 todoRoutes.route("/add").post(function (req, res) {
@@ -69,7 +84,6 @@ todoRoutes.route("/add").post(function (req, res) {
 });
 
 app.use("/todos", todoRoutes);
-// app.use("/", todoRoutes);
 
 app.listen(PORT, function () {
   console.log("Server is running on Port: " + PORT);
