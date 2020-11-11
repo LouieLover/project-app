@@ -84,6 +84,7 @@ todoRoutes.route("/add").post(function (req, res) {
 });
 
 app.use("/todos", todoRoutes);
+app.use("/", require("./routes/user"));
 
 app.listen(PORT, function () {
   console.log("Server is running on Port: " + PORT);
