@@ -8,6 +8,9 @@ import EditTodo from "./components/edit-todo.component";
 import TodosList from "./components/todos-list.component";
 import Chat from "./components/chat";
 import Map from "./components/Map/";
+import Login from "./components/auth/Login";
+import Register from "./components/auth/Register";
+// import UserContext from "./context/userContext";
 
 class App extends Component {
   render() {
@@ -20,8 +23,11 @@ class App extends Component {
             <div className="collpase navbar-collapse">
               <ul className="navbar-nav mr-auto">
                 <li className="navbar-item">
-                  <Link to="/" className="nav-link">
+                  <Link to="/Login" className="nav-link">
                     Login
+                  </Link>
+                  <Link to="/Register" className="nav-link">
+                    Register
                   </Link>
                 </li>
                 <li className="navbar-item">
@@ -44,10 +50,13 @@ class App extends Component {
           </nav>
 
           <br />
+          <Route path="/Login" component={Login} />
+          <Route path="/Register" component={Register} />
           <Route path="/todos" exact component={TodosList} />
           <Route path="/edit/:id" component={EditTodo} />
           <Route path="/create" component={CreateTodo} />
-          <Route path="/chat" component={Chat} />
+
+          {/* <Route path="/chat" component={Chat} /> */}
 
           <Map
             onLoad={(map) => {
