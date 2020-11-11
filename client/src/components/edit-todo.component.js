@@ -72,9 +72,9 @@ export default class EditTodo extends Component {
     axios
       .put("/todos/" + this.props.match.params.id, obj)
       .then((res) => console.log(res.data));
-
     this.props.history.push("/todos/");
   }
+
   onSubmitDelete(e) {
     e.preventDefault();
 
