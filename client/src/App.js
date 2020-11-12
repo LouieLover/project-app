@@ -36,7 +36,7 @@ class App extends Component {
                 </li>
                 <li className="navbar-item">
                   <Link to="/todos" className="nav-link">
-                    User
+                    Team Info
                   </Link>
                 </li>
                 <li className="navbar-item">
@@ -49,8 +49,8 @@ class App extends Component {
           </nav>
 
           <br />
-          <Route path="/Login" component={Login} />
-          <Route path="/Register" component={Register} />
+          <Route path="/login" component={Login} />
+          <Route path="/register" component={Register} />
           <Route path="/todos" exact component={TodosList} />
           <Route path="/edit/:id" component={EditTodo} />
           <Route path="/create" component={CreateTodo} />
