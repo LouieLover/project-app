@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Map from "../components/Map/";
 
 export default class EditTodo extends Component {
   constructor(props) {
@@ -146,6 +147,12 @@ export default class EditTodo extends Component {
             />
           </div>
         </form>
+        <Map
+          onLoad={(map) => {
+            const bounds = new window.google.maps.LatLngBounds();
+            map.fitBounds(bounds);
+          }}
+        ></Map>
       </div>
     );
   }

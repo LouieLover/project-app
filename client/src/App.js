@@ -7,7 +7,6 @@ import CreateTodo from "./components/create-todo.component";
 import EditTodo from "./components/edit-todo.component";
 import TodosList from "./components/todos-list.component";
 import Chat from "./components/chat";
-import Map from "./components/Map/";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 // import UserContext from "./context/userContext";
@@ -56,14 +55,7 @@ class App extends Component {
           <Route path="/edit/:id" component={EditTodo} />
           <Route path="/create" component={CreateTodo} />
 
-          {/* <Route path="/chat" component={Chat} /> */}
-
-          <Map
-            onLoad={(map) => {
-              const bounds = new window.google.maps.LatLngBounds();
-              map.fitBounds(bounds);
-            }}
-          ></Map>
+          <Route path="/chat" component={Chat} />
         </div>
       </Router>
     );

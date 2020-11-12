@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import axios from "axios";
+import Map from "../components/Map/index";
 
 export default class CreateTodo extends Component {
   constructor(props) {
@@ -101,6 +102,12 @@ export default class CreateTodo extends Component {
             <input type="submit" value="Submit" className="btn btn-primary" />
           </div>
         </form>
+        <Map
+          onLoad={(map) => {
+            const bounds = new window.google.maps.LatLngBounds();
+            map.fitBounds(bounds);
+          }}
+        ></Map>
       </div>
     );
   }

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-const cors = require("cors");
+import Map from "../components/Map/";
 
 const Todo = (props) => (
   <tr>
@@ -52,6 +52,12 @@ export default class TodosList extends Component {
           </thead>
           <tbody>{this.todoList()}</tbody>
         </table>
+        <Map
+          onLoad={(map) => {
+            const bounds = new window.google.maps.LatLngBounds();
+            map.fitBounds(bounds);
+          }}
+        ></Map>
       </div>
     );
   }
