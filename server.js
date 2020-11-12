@@ -8,7 +8,7 @@ const todoRoutes = express.Router();
 // const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const auth = require("./middleware/auth");
-const PORT = 3001;
+const PORT = process.env.PORT || 3001;
 
 let Todo = require("./models/todo.model");
 // let User = require("./models/userModel");
@@ -78,3 +78,6 @@ app.use("/users", require("./routes/user"));
 app.listen(PORT, function () {
   console.log("Server is running on Port: " + PORT);
 });
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
