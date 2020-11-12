@@ -9,7 +9,8 @@ import TodosList from "./components/todos-list.component";
 import Chat from "./components/chat";
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
-// import UserContext from "./context/userContext";
+import user from "./components/auth/AuthOptions";
+import UserContext from "./context/userContext";
 
 class App extends Component {
   render() {
@@ -22,10 +23,10 @@ class App extends Component {
             <div className="collpase navbar-collapse">
               <ul className="navbar-nav mr-auto">
                 <li className="navbar-item">
-                  <Link to="/Login" className="nav-link">
+                  <Link to="/login" className="nav-link">
                     Login
                   </Link>
-                  <Link to="/Register" className="nav-link">
+                  <Link to="/register" className="nav-link">
                     Register
                   </Link>
                 </li>
@@ -44,18 +45,25 @@ class App extends Component {
                     Chat
                   </Link>
                 </li>
+                <li className="navbar-item">
+                  <Link to="/user" className="nav-link">
+                    User
+                  </Link>
+                </li>
               </ul>
             </div>
           </nav>
 
           <br />
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-          <Route path="/todos" exact component={TodosList} />
-          <Route path="/edit/:id" component={EditTodo} />
-          <Route path="/create" component={CreateTodo} />
-
-          <Route path="/chat" component={Chat} />
+          <UserContext.Provider value={{ userData, setUserData }}>
+            <Route path="/login" component={Login} />
+            <Route path="/register" component={Register} />
+            <Route path="/todos" exact component={TodosList} />
+            <Route path="/edit/:id" component={EditTodo} />
+            <Route path="/create" component={CreateTodo} />
+            <Route path="/user" component={user} />
+            <Route path="/chat" component={Chat} />
+          </UserContext.Provider>
         </div>
       </Router>
     );

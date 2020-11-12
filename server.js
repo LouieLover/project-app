@@ -11,7 +11,7 @@ const auth = require("./middleware/auth");
 const PORT = 3001;
 
 let Todo = require("./models/todo.model");
-let User = require("./models/userModel");
+// let User = require("./models/userModel");
 
 app.use(cors());
 // app.use(bodyParser.json());

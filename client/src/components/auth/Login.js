@@ -16,7 +16,7 @@ export default function Login() {
     e.preventDefault();
     try {
       const loginUser = { email, password };
-      const loginRes = await Axios.post("/users/Login/", loginUser);
+      const loginRes = await Axios.post("users/login/", loginUser);
       setUserData({
         token: loginRes.data.token,
         user: loginRes.data.user,
@@ -24,6 +24,7 @@ export default function Login() {
       localStorage.setItem("auth-token", loginRes.data.token);
       history.push("/");
     } catch (err) {
+      console.log(err);
       err.response.data.msg && setError(err.response.data.msg);
     }
   };

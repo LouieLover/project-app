@@ -2,8 +2,11 @@ const router = require("express").Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const auth = require("../middleware/auth");
+const User = require("../models/userModel");
+require("dotenv").config();
 
 router.post("/register", async (req, res) => {
+  console.log(req.body);
   try {
     let { email, password, passwordCheck, displayName } = req.body;
 
@@ -39,6 +42,7 @@ router.post("/register", async (req, res) => {
     const savedUser = await newUser.save();
     res.json(savedUser);
   } catch (err) {
+    console.log(err);
     res.status(500).json({ error: err.message });
   }
 });
@@ -69,6 +73,7 @@ router.post("/login", async (req, res) => {
       },
     });
   } catch (err) {
+    console.log(err);
     res.status(500).json({ error: err.message });
   }
 });
