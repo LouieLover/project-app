@@ -10,7 +10,7 @@ import TeamList from "./components/teamList";
 
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
-import user from "./components/auth/AuthOptions";
+// import user from "./components/auth/AuthOptions";
 import UserContext from "./context/userContext";
 // import userLogin from "./components/login";
 // import Scores from "./components/scores/scores";
@@ -83,7 +83,7 @@ function App() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item active">
-              <a className="nav-link" href="/teams" component={userLogin}>
+              <a className="nav-link" href="/teams">
                 Home <span className="sr-only">(current)</span>
               </a>
             </li>
@@ -113,9 +113,9 @@ function App() {
       <UserContext.Provider value={{ userData, setUserData }}>
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
-        <Route path="/teams" exact component={TeamList} />
-        <Route path="/teams" component={EditTeam} />
-        <Route path="/teams" component={CreateTeam} />
+        <Route path="/create" exact component={TeamList} />
+        <Route path="/edit/:id" component={EditTeam} />
+        <Route path="/user" component={CreateTeam} />
       </UserContext.Provider>
     </Router>
   );
