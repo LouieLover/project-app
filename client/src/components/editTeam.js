@@ -18,6 +18,7 @@ export default class EditTodo extends Component {
       team: "",
       location: "",
       complete: false,
+      teams: [],
     };
   }
 
@@ -147,12 +148,6 @@ export default class EditTodo extends Component {
             />
           </div>
         </form>
-        <Map
-          onLoad={(map) => {
-            const bounds = new window.google.maps.LatLngBounds();
-            map.fitBounds(bounds);
-          }}
-        ></Map>
       </div>
     );
   }

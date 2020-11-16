@@ -11,6 +11,10 @@ let Team = new Schema({
   location: {
     type: String,
   },
+  coords: {
+    lat: Number,
+    lng: Number,
+  },
   complete: {
     type: Boolean,
   },

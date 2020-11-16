@@ -4,14 +4,15 @@ import axios from "axios";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import CreateTodo from "./components/create-todo.component";
-import EditTodo from "./components/edit-todo.component";
-import TodosList from "./components/todos-list.component";
+import CreateTodo from "./components/createTeam";
+import EditTodo from "./components/editTeam";
+import TodosList from "./components/teamList";
 
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import user from "./components/auth/AuthOptions";
 import UserContext from "./context/userContext";
+import userLogin from "./components/login";
 
 function App() {
   const [userData, setUserData] = useState({
@@ -43,9 +44,27 @@ function App() {
     checkLoggedIn();
   }, []);
 
+  var options = {
+    method: "GET",
+    url: "https://sportspage-feeds.p.rapidapi.com/games",
+    headers: {
+      "x-rapidapi-key": "eb45bf77dfmshf915d7ada5b551ep155d70jsn029abbe4cef7",
+      "x-rapidapi-host": "sportspage-feeds.p.rapidapi.com",
+    },
+  };
+
+  axios
+    .request(options)
+    .then(function (response) {
+      console.log(response.data);
+    })
+    .catch(function (error) {
+      console.error(error);
+    });
+
   return (
     <Router>
-      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+      <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
         <a className="navbar-brand" href="#">
           SportsMeet
         </a>
@@ -78,6 +97,9 @@ function App() {
               </a>
             </li>
             <li className="nav-item">
+              <a className="nav-link" href="/"></a>
+            </li>
+            <li className="nav-item">
               <a className="nav-link" href="/edit/:id">
                 Edit Team
               </a>
@@ -93,7 +115,7 @@ function App() {
         <Route path="/teams" exact component={TodosList} />
         <Route path="/edit/:id" component={EditTodo} />
         <Route path="/create" component={CreateTodo} />
-        <Route path="/user" component={user} />
+        <Route path="/user" component={userLogin} />
       </UserContext.Provider>
     </Router>
   );
