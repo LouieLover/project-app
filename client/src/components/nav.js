@@ -1,4 +1,5 @@
 import React from "react";
+import Link from "react-router-dom";
 
 export default function Nav({ userData, logout }) {
   return (
@@ -21,31 +22,31 @@ export default function Nav({ userData, logout }) {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item active">
-              <a className="nav-link" href="/">
+              <Link className="nav-link" href="/">
                 Home <span className="sr-only">(current)</span>
-              </a>
+              </Link>
             </li>
             {!userData.user && (
               <li className="nav-item">
-                <a className="nav-link" href="/register">
+                <Link className="nav-link" href="/register">
                   Register
-                </a>
+                </Link>
               </li>
             )}
             <li className="nav-item">
-              <a className="nav-link" href="/teams">
+              <Link className="nav-link" href="/teamlist">
                 Team List
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/user">
+              <Link className="nav-link" href="/user">
                 New Team
-              </a>
+              </Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/edit/:id">
+              <Link className="nav-link" href="/edit/:id">
                 Edit Team
-              </a>
+              </Link>
             </li>
             {userData.user && <button onClick={logout}>Log out</button>}
           </ul>

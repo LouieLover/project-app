@@ -81,7 +81,7 @@ function App() {
           <Switch>
             <Route path="/edit/:id" component={EditTeam} />
             <Route path="/user" component={CreateTeam} />
-            <Route path={["/teams", "/"]} exact component={TeamList} />
+            <Route path={["/teamlist", "/"]} exact component={TeamList} />
           </Switch>
         )}
         {!userData.user && (
@@ -89,7 +89,7 @@ function App() {
             <Route path="/register" component={Register} />
             <Route path="/edit/:id" component={Login} />
             <Route path="/user" component={Login} />
-            <Route path={["/teams", "/"]} component={Login} />
+            <Route path={["/teamlist", "/"]} component={Login} />
           </Switch>
         )}
       </UserContext.Provider>
