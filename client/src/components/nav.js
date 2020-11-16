@@ -22,29 +22,29 @@ export default function Nav({ userData, logout }) {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item active">
-              <Link className="nav-link" href="/">
+              <Link className="nav-link" to="/">
                 Home <span className="sr-only">(current)</span>
               </Link>
             </li>
             {!userData.user && (
               <li className="nav-item">
-                <Link className="nav-link" href="/register">
+                <Link className="nav-link" to="/register">
                   Register
                 </Link>
               </li>
             )}
             <li className="nav-item">
-              <Link className="nav-link" href="/teamlist">
+              <Link className="nav-link" to="/teamlist">
                 Team List
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" href="/user">
+              <Link className="nav-link" to="/user">
                 New Team
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link" href="/edit/:id">
+              <Link className="nav-link" to="/edit/:id">
                 Edit Team
               </Link>
             </li>
