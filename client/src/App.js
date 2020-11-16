@@ -115,7 +115,7 @@ function App() {
         <Route path="/teams" exact component={TeamList} />
         <Route path="/edit/:id" component={EditTeam} />
         <Route path="/create" component={CreateTeam} />
-        <Route path="/user" component={user} />
+        <Route path="/user" component={userLogin} />
       </UserContext.Provider>
     </Router>
   );
