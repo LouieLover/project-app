@@ -45,50 +45,56 @@ function App() {
 
   return (
     <Router>
-      <div className="container">
-        <nav className="navbar navbar-dark bg-dark">
-          <a className="navbar-brand" target="_blank"></a>
-          <Link to="/" className="navbar-brand"></Link>
-          <div className="collpase navbar-collapse">
-            <ul className="navbar-nav mr-auto">
-              <li className="navbar-item">
-                <Link to="/login" className="nav-link">
-                  Login
-                </Link>
-                <Link to="/register" className="nav-link">
-                  Register
-                </Link>
-              </li>
-              <li className="navbar-item">
-                <Link to="/create" className="nav-link">
-                  Submit
-                </Link>
-              </li>
-              <li className="navbar-item">
-                <Link to="/todos" className="nav-link">
-                  Team Info
-                </Link>
-              </li>
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
+        <a className="navbar-brand" href="#">
+          SportsMeet
+        </a>
+        <button
+          className="navbar-toggler"
+          type="button"
+          data-toggle="collapse"
+          data-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span className="navbar-toggler-icon" />
+        </button>
+        <div className="collapse navbar-collapse" id="navbarNav">
+          <ul className="navbar-nav">
+            <li className="nav-item active">
+              <a className="nav-link" href="/user">
+                Home <span className="sr-only">(current)</span>
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/teams">
+                Team List
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/create">
+                New Team
+              </a>
+            </li>
+            <li className="nav-item">
+              <a className="nav-link" href="/edit/:id">
+                Edit Team
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
 
-              <li className="navbar-item">
-                <Link to="/user" className="nav-link">
-                  User
-                </Link>
-              </li>
-            </ul>
-          </div>
-        </nav>
-
-        <br />
-        <UserContext.Provider value={{ userData, setUserData }}>
-          <Route path="/login" component={Login} />
-          <Route path="/register" component={Register} />
-          <Route path="/todos" exact component={TodosList} />
-          <Route path="/edit/:id" component={EditTodo} />
-          <Route path="/create" component={CreateTodo} />
-          <Route path="/user" component={user} />
-        </UserContext.Provider>
-      </div>
+      <br />
+      <UserContext.Provider value={{ userData, setUserData }}>
+        <Route path="/login" component={Login} />
+        <Route path="/register" component={Register} />
+        <Route path="/teams" exact component={TodosList} />
+        <Route path="/edit/:id" component={EditTodo} />
+        <Route path="/create" component={CreateTodo} />
+        <Route path="/user" component={user} />
+      </UserContext.Provider>
     </Router>
   );
 }
