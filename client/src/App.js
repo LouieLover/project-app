@@ -12,7 +12,7 @@ import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import user from "./components/auth/AuthOptions";
 import UserContext from "./context/userContext";
-import userLogin from "./components/login";
+// import userLogin from "./components/login";
 // import Scores from "./components/scores/scores";
 
 function App() {
@@ -83,7 +83,7 @@ function App() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item active">
-              <a className="nav-link" href="/user" component={userLogin}>
+              <a className="nav-link" href="/teams" component={userLogin}>
                 Home <span className="sr-only">(current)</span>
               </a>
             </li>
