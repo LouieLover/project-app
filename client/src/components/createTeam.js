@@ -2,7 +2,7 @@ import React, { Component, useContext } from "react";
 import axios from "axios";
 import Map from "./Map/index";
 
-export default class CreateTodo extends Component {
+export default class CreateTeam extends Component {
   constructor(props) {
     super(props);
 

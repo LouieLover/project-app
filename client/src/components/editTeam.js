@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import Map from "../components/Map/";
 
-export default class EditTodo extends Component {
+export default class EditTeam extends Component {
   constructor(props) {
     super(props);
 

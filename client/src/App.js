@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 import axios from "axios";
 
 import "bootstrap/dist/css/bootstrap.min.css";
 
-import CreateTodo from "./components/createTeam";
-import EditTodo from "./components/editTeam";
-import TodosList from "./components/teamList";
+import CreateTeam from "./components/createTeam";
+import EditTeam from "./components/editTeam";
+import TeamList from "./components/teamList";
 
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
@@ -112,10 +112,10 @@ function App() {
       <UserContext.Provider value={{ userData, setUserData }}>
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
-        <Route path="/teams" exact component={TodosList} />
-        <Route path="/edit/:id" component={EditTodo} />
-        <Route path="/create" component={CreateTodo} />
-        <Route path="/user" component={userLogin} />
+        <Route path="/teams" exact component={TeamList} />
+        <Route path="/edit/:id" component={EditTeam} />
+        <Route path="/create" component={CreateTeam} />
+        <Route path="/user" component={user} />
       </UserContext.Provider>
     </Router>
   );
