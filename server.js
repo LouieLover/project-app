@@ -26,6 +26,9 @@ const connection = mongoose.connection;
 connection.once("open", function () {
   console.log("MongoDB database connection established successfully");
 });
+if (process.env.NODE_ENV === "production") {
+  app.use(express.static("client/build"));
+}
 
 teamRoutes.route("/").get(function (req, res) {
   Team.find(function (err, teams) {
@@ -80,6 +83,3 @@ app.use("/user", require("./routes/user"));
 app.listen(PORT, function () {
   console.log("Server is running on Port: " + PORT);
 });
-if (process.env.NODE_ENV === "production") {
-  app.use(express.static("client/build"));
-}
