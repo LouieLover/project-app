@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
-import Map from "./Map";
+import Map from "../components/Map/";
 
 const Team = (props) => (
   <tr>
@@ -17,13 +17,7 @@ const Team = (props) => (
 export default class TeamList extends Component {
   constructor(props) {
     super(props);
-    this.state = {
-      user: "",
-      team: "",
-      location: "",
-      completed: false,
-      teams: [],
-    };
+    this.state = { team: [] };
   }
 
   componentDidMount() {
@@ -38,7 +32,7 @@ export default class TeamList extends Component {
   }
 
   teamList() {
-    return this.state.teams.map(function (currentTeam, i) {
+    return this.state.team.map(function (currentTeam, i) {
       return <Team team={currentTeam} key={i} />;
     });
   }
@@ -46,10 +40,8 @@ export default class TeamList extends Component {
   render() {
     return (
       <div>
-        <table
-          className="table table-striped "
-          // style={{ marginTop: 20 }}
-        >
+        <h3>Team Info</h3>
+        <table className="table table-striped" style={{ marginTop: 20 }}>
           <thead>
             <tr>
               <th>Team</th>
@@ -61,10 +53,11 @@ export default class TeamList extends Component {
           <tbody>{this.teamList()}</tbody>
         </table>
         <Map
-          locations={this.state.teams.map((team) => {
-            return team.coords;
-          })}
-        />
+          onLoad={(map) => {
+            const bounds = new window.google.maps.LatLngBounds();
+            map.fitBounds(bounds);
+          }}
+        ></Map>
       </div>
     );
   }

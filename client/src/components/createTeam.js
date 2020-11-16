@@ -1,8 +1,8 @@
 import React, { Component, useContext } from "react";
 import axios from "axios";
-import Map from "./Map/index";
+import Map from "../components/Map/index";
 
-export default class CreateTeam extends Component {
+export default class CreateTodo extends Component {
   constructor(props) {
     super(props);
 
@@ -16,7 +16,6 @@ export default class CreateTeam extends Component {
       team: "",
       location: "",
       complete: false,
-      teams: [],
     };
   }
 
@@ -60,7 +59,6 @@ export default class CreateTeam extends Component {
       team: "",
       location: "",
       complete: false,
-      teams: [],
     });
   }
 

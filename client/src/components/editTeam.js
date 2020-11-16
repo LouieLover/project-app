@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import axios from "axios";
 import Map from "../components/Map/";
 
-export default class EditTeam extends Component {
+export default class EditTodo extends Component {
   constructor(props) {
     super(props);
 
@@ -18,7 +18,6 @@ export default class EditTeam extends Component {
       team: "",
       location: "",
       complete: false,
-      teams: [],
     };
   }
 
@@ -148,6 +147,12 @@ export default class EditTeam extends Component {
             />
           </div>
         </form>
+        <Map
+          onLoad={(map) => {
+            const bounds = new window.google.maps.LatLngBounds();
+            map.fitBounds(bounds);
+          }}
+        ></Map>
       </div>
     );
   }
