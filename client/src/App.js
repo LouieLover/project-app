@@ -63,6 +63,10 @@ function App() {
       console.error(error);
     });
 
+    axios.post(options).then(function => {
+data.results[1].map
+    })
+
   return (
     <Router>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -98,7 +102,7 @@ function App() {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/"></a>
+              <a className="nav-link" href="/create"></a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/edit/:id">
@@ -116,7 +120,7 @@ function App() {
         <Route path="/teams" exact component={TeamList} />
         <Route path="/edit/:id" component={EditTeam} />
         <Route path="/create" component={CreateTeam} />
-        <Route path="/user" component={userLogin} />
+
       </UserContext.Provider>
     </Router>
   );
