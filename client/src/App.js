@@ -13,6 +13,7 @@ import Register from "./components/auth/Register";
 import user from "./components/auth/AuthOptions";
 import UserContext from "./context/userContext";
 import userLogin from "./components/login";
+// import Scores from "./components/scores/scores";
 
 function App() {
   const [userData, setUserData] = useState({
