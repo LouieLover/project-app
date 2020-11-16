@@ -18,7 +18,9 @@ app.use(cors());
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-mongoose.connect("mongodb://127.0.0.1:27017/todos", { useNewUrlParser: true });
+mongoose.connect("mongodb://127.0.0.1:27017/barteam", {
+  useNewUrlParser: true,
+});
 const connection = mongoose.connection;
 
 connection.once("open", function () {
