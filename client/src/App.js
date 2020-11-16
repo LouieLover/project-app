@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { BrowserRouter as Router, Route } from "react-router-dom";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import axios from "axios";
 
 import "bootstrap/dist/css/bootstrap.min.css";
@@ -28,11 +28,11 @@ function App() {
         localStorage.setItem("auth-token", "");
         token = "";
       }
-      const tokenResponse = await axios.post("/users/tokenIsValid", null, {
+      const tokenResponse = await axios.post("/user/tokenIsValid", null, {
         headers: { "x-auth-token": token },
       });
       if (tokenResponse.data) {
-        const userRes = await axios.get("/users/", {
+        const userRes = await axios.get("/user/", {
           headers: { "x-auth-token": token },
         });
         setUserData({
@@ -63,16 +63,35 @@ function App() {
       console.error(error);
     });
 
+  const logout = () => {
+    setUserData({
+      token: undefined,
+      user: undefined,
+    });
+    localStorage.setItem("auth-token", "");
+  };
+
   return (
     <Router>
-      <Nav />
-      <br />
       <UserContext.Provider value={{ userData, setUserData }}>
-        <Route path="/login" component={Login} />
-        <Route path="/register" component={Register} />
-        <Route path="/teams" exact component={TeamList} />
-        <Route path="/edit/:id" component={EditTeam} />
-        <Route path="/user" component={CreateTeam} />
+        <Nav userData={userData} logout={logout} />
+
+        <br />
+        {userData.user && (
+          <Switch>
+            <Route path="/edit/:id" component={EditTeam} />
+            <Route path="/user" component={CreateTeam} />
+            <Route path={["/teams", "/"]} exact component={TeamList} />
+          </Switch>
+        )}
+        {!userData.user && (
+          <Switch>
+            <Route path="/register" component={Register} />
+            <Route path="/edit/:id" component={Login} />
+            <Route path="/user" component={Login} />
+            <Route path={["/teams", "/"]} component={Login} />
+          </Switch>
+        )}
       </UserContext.Provider>
     </Router>
   );
