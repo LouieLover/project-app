@@ -75,7 +75,7 @@ teamRoutes.route("/add").post(function (req, res) {
 });
 
 app.use("/teams", teamRoutes);
-app.use("/users", require("./routes/user"));
+app.use("/user", require("./routes/user"));
 
 app.listen(PORT, function () {
   console.log("Server is running on Port: " + PORT);
