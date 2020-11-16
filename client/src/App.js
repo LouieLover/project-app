@@ -83,22 +83,19 @@ function App() {
         <div className="collapse navbar-collapse" id="navbarNav">
           <ul className="navbar-nav">
             <li className="nav-item active">
-              <a className="nav-link" href="/teams">
+              <a className="nav-link" href="/login">
                 Home <span className="sr-only">(current)</span>
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/teams">
+              <a className="nav-link" href="/create">
                 Team List
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/create">
+              <a className="nav-link" href="/user">
                 New Team
               </a>
-            </li>
-            <li className="nav-item">
-              <a className="nav-link" href="/create"></a>
             </li>
             <li className="nav-item">
               <a className="nav-link" href="/edit/:id">
