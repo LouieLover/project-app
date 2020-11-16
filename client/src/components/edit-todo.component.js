@@ -6,30 +6,30 @@ export default class EditTodo extends Component {
   constructor(props) {
     super(props);
 
-    this.onChangeTodoTeam = this.onChangeTodoTeam.bind(this);
-    this.onChangeTodoLocation = this.onChangeTodoLocation.bind(this);
-    this.onChangeTodoDescription = this.onChangeTodoDescription.bind(this);
-    this.onChangeTodoCompleted = this.onChangeTodoCompleted.bind(this);
+    this.user = this.user.bind(this);
+    this.team = this.team.bind(this);
+    this.location = this.location.bind(this);
+    this.complete = this.complete.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
     this.onSubmitDelete = this.onSubmitDelete.bind(this);
 
     this.state = {
-      todo_Team: "",
-      todo_Location: "",
-      todo_Description: "",
-      todo_completed: false,
+      user: "",
+      team: "",
+      location: "",
+      complete: false,
     };
   }
 
   componentDidMount() {
     axios
-      .get("/todos/" + this.props.match.params.id)
+      .get("/teams/" + this.props.match.params.id)
       .then((response) => {
         this.setState({
-          todo_Team: response.data.todo_Team,
-          todo_Location: response.data.todo_Location,
-          todo_Description: response.data.todo_Description,
-          todo_completed: response.data.todo_completed,
+          user: response.data.user,
+          team: response.data.team,
+          location: response.data.location,
+          complete: response.data.complete,
         });
       })
       .catch(function (error) {
@@ -37,54 +37,54 @@ export default class EditTodo extends Component {
       });
   }
 
-  onChangeTodoTeam(e) {
+  user(e) {
     this.setState({
-      todo_Team: e.target.value,
+      user: e.target.value,
     });
   }
 
-  onChangeTodoLocation(e) {
+  team(e) {
     this.setState({
-      todo_Location: e.target.value,
+      team: e.target.value,
     });
   }
 
-  onChangeTodoDescription(e) {
+  location(e) {
     this.setState({
-      todo_Description: e.target.value,
+      location: e.target.value,
     });
   }
 
-  onChangeTodoCompleted(e) {
+  complete(e) {
     this.setState({
-      todo_completed: !this.state.todo_completed,
+      complete: !this.state.todo_completed,
     });
   }
 
   onSubmit(e) {
     e.preventDefault();
     const obj = {
-      todo_Team: this.state.todo_Team,
-      todo_Location: this.state.todo_Location,
-      todo_Description: this.state.todo_Description,
-      todo_completed: this.state.todo_completed,
+      user: this.state.user,
+      team: this.state.team,
+      location: this.state.location,
+      complete: this.state.complete,
     };
     console.log(obj);
     axios
-      .put("/todos/" + this.props.match.params.id, obj)
+      .put("/teams/" + this.props.match.params.id, obj)
       .then((res) => console.log(res.data));
-    this.props.history.push("/todos/");
+    this.props.history.push("/teams/");
   }
 
   onSubmitDelete(e) {
     e.preventDefault();
 
-    axios.delete("/todos/" + this.props.match.params.id).then((res) => {
+    axios.delete("/teams/" + this.props.match.params.id).then((res) => {
       console.log(res.data);
-      this.props.history.push("/todos/");
+      this.props.history.push("/teams/");
     });
 
-    this.props.history.push("/todos/");
+    this.props.history.push("/teams/");
   }
   render() {
     return (
@@ -92,30 +92,30 @@ export default class EditTodo extends Component {
         <h3 align="center">Update</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
-            <label>Team: </label>
+            <label>user: </label>
             <input
               type="text"
               className="form-control"
-              value={this.state.todo_Team}
-              onChange={this.onChangeTodoTeam}
+              value={this.state.user}
+              onChange={this.user}
             />
           </div>
           <div className="form-group">
-            <label>Location: </label>
+            <label>team: </label>
             <input
               type="text"
               className="form-control"
-              value={this.state.todo_Location}
-              onChange={this.onChangeTodoLocation}
+              value={this.state.team}
+              onChange={this.team}
             />
           </div>
           <div className="form-group">
-            <label>Description: </label>
+            <label>location: </label>
             <input
               type="text"
               className="form-control"
-              value={this.state.todo_Description}
-              onChange={this.onChangeTodoDescription}
+              value={this.state.location}
+              onChange={this.location}
             />
           </div>
           <div className="form-check">
@@ -124,9 +124,9 @@ export default class EditTodo extends Component {
               id="completedCheckbox"
               type="checkbox"
               name="completedCheckbox"
-              onChange={this.onChangeTodoCompleted}
-              checked={this.state.todo_completed}
-              value={this.state.todo_completed}
+              onChange={this.complete}
+              checked={this.state.complete}
+              value={this.state.complete}
             />
             <label className="form-check-label" htmlFor="completedCheckbox">
               Completed

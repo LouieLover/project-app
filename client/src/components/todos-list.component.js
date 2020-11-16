@@ -3,37 +3,37 @@ import { Link } from "react-router-dom";
 import axios from "axios";
 import Map from "../components/Map/";
 
-const Todo = (props) => (
+const Team = (props) => (
   <tr>
-    <td>{props.todo.todo_Team}</td>
-    <td>{props.todo.todo_Location}</td>
-    <td>{props.todo.todo_Description}</td>
+    <td>{props.team.user}</td>
+    <td>{props.team.team}</td>
+    <td>{props.team.location}</td>
     <td>
-      <Link to={"/edit/" + props.todo._id}>Edit</Link>
+      <Link to={"/edit/" + props.team._id}>Edit</Link>
     </td>
   </tr>
 );
 
-export default class TodosList extends Component {
+export default class TeamList extends Component {
   constructor(props) {
     super(props);
-    this.state = { todos: [] };
+    this.state = { team: [] };
   }
 
   componentDidMount() {
     axios
-      .get("/todos/")
+      .get("/teams/")
       .then((response) => {
-        this.setState({ todos: response.data });
+        this.setState({ team: response.data });
       })
       .catch(function (error) {
         console.log(error);
       });
   }
 
-  todoList() {
-    return this.state.todos.map(function (currentTodo, i) {
-      return <Todo todo={currentTodo} key={i} />;
+  teamList() {
+    return this.state.team.map(function (currentTeam, i) {
+      return <Team team={currentTeam} key={i} />;
     });
   }
 
@@ -50,7 +50,7 @@ export default class TodosList extends Component {
               <th>Action</th>
             </tr>
           </thead>
-          <tbody>{this.todoList()}</tbody>
+          <tbody>{this.teamList()}</tbody>
         </table>
         <Map
           onLoad={(map) => {

@@ -7,7 +7,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import CreateTodo from "./components/create-todo.component";
 import EditTodo from "./components/edit-todo.component";
 import TodosList from "./components/todos-list.component";
-import Chat from "./components/chat";
+
 import Login from "./components/auth/Login";
 import Register from "./components/auth/Register";
 import user from "./components/auth/AuthOptions";
@@ -69,11 +69,7 @@ function App() {
                   Team Info
                 </Link>
               </li>
-              <li className="navbar-item">
-                <Link to="/chat" className="nav-link">
-                  Chat
-                </Link>
-              </li>
+
               <li className="navbar-item">
                 <Link to="/user" className="nav-link">
                   User
@@ -91,7 +87,6 @@ function App() {
           <Route path="/edit/:id" component={EditTodo} />
           <Route path="/create" component={CreateTodo} />
           <Route path="/user" component={user} />
-          <Route path="/chat" component={Chat} />
         </UserContext.Provider>
       </div>
     </Router>

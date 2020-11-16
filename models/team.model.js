@@ -1,19 +1,19 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-let Todo = new Schema({
-  todo_Team: {
+let Team = new Schema({
+  user: {
     type: String,
   },
-  todo_Location: {
+  team: {
     type: String,
   },
-  todo_Description: {
+  location: {
     type: String,
   },
-  todo_completed: {
+  complete: {
     type: Boolean,
   },
 });
 
-module.exports = mongoose.model("Todo", Todo);
+module.exports = mongoose.model("Team", Team);

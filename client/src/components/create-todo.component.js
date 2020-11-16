@@ -6,34 +6,34 @@ export default class CreateTodo extends Component {
   constructor(props) {
     super(props);
 
-    this.onChangeTodoTeam = this.onChangeTodoTeam.bind(this);
-    this.onChangeTodoLocation = this.onChangeTodoLocation.bind(this);
-    this.onChangeTodoDescription = this.onChangeTodoDescription.bind(this);
+    this.user = this.user.bind(this);
+    this.team = this.team.bind(this);
+    this.location = this.location.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
 
     this.state = {
-      todo_Team: "",
-      todo_Location: "",
-      todo_Description: "",
-      todo_completed: false,
+      user: "",
+      team: "",
+      location: "",
+      complete: false,
     };
   }
 
-  onChangeTodoTeam(e) {
+  user(e) {
     this.setState({
-      todo_Team: e.target.value,
+      user: e.target.value,
     });
   }
 
-  onChangeTodoLocation(e) {
+  team(e) {
     this.setState({
-      todo_Location: e.target.value,
+      team: e.target.value,
     });
   }
 
-  onChangeTodoDescription(e) {
+  location(e) {
     this.setState({
-      todo_Description: e.target.value,
+      location: e.target.value,
     });
   }
 
@@ -41,24 +41,24 @@ export default class CreateTodo extends Component {
     e.preventDefault();
 
     console.log(`Form submitted:`);
-    console.log(`Todo Team: ${this.state.todo_Team}`);
-    console.log(`Todo Location: ${this.state.todo_Location}`);
-    console.log(`Todo Description: ${this.state.todo_Description}`);
+    console.log(`user: ${this.state.user}`);
+    console.log(`team: ${this.state.team}`);
+    console.log(`location: ${this.state.location}`);
 
     const newTodo = {
-      todo_Team: this.state.todo_Team,
-      todo_Location: this.state.todo_Location,
-      todo_Description: this.state.todo_Description,
-      todo_completed: this.state.todo_completed,
+      user: this.state.user,
+      team: this.state.team,
+      location: this.state.location,
+      complete: this.state.complete,
     };
 
-    axios.post("/todos/add", newTodo).then((res) => console.log(res.data));
+    axios.post("/teams/add", newTodo).then((res) => console.log(res.data));
 
     this.setState({
-      todo_Team: "",
-      todo_Location: "",
-      todo_Description: "",
-      todo_completed: false,
+      user: "",
+      team: "",
+      location: "",
+      complete: false,
     });
   }
 
@@ -68,33 +68,33 @@ export default class CreateTodo extends Component {
         <h3>Enter Info</h3>
         <form onSubmit={this.onSubmit}>
           <div className="form-group">
-            <label>Team: </label>
+            <label>user: </label>
             <input
               type="text"
               className="form-control"
               name="teamName"
-              value={this.state.todo_Team}
-              onChange={this.onChangeTodoTeam}
+              value={this.state.user}
+              onChange={this.user}
             />
           </div>
           <div className="form-group">
-            <label>Location: </label>
+            <label>team: </label>
             <input
               type="text"
               className="form-control"
               name="location"
-              value={this.state.todo_Location}
-              onChange={this.onChangeTodoLocation}
+              value={this.state.team}
+              onChange={this.team}
             />
           </div>
           <div className="form-group">
-            <label>Description: </label>
+            <label>location: </label>
             <input
               type="text"
               className="form-control"
               name="description"
-              value={this.state.todo_Description}
-              onChange={this.onChangeTodoDescription}
+              value={this.state.location}
+              onChange={this.location}
             />
           </div>
 

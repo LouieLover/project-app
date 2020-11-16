@@ -3,14 +3,14 @@ const app = express();
 // const bodyParser = require("body-parser");
 const cors = require("cors");
 const mongoose = require("mongoose");
-const todoRoutes = express.Router();
+const teamRoutes = express.Router();
 // const router = require("express").Router();
 // const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const auth = require("./middleware/auth");
 const PORT = process.env.PORT || 3001;
 
-let Todo = require("./models/todo.model");
+let Team = require("./models/team.model");
 // let User = require("./models/userModel");
 
 app.use(cors());
@@ -25,26 +25,26 @@ connection.once("open", function () {
   console.log("MongoDB database connection established successfully");
 });
 
-todoRoutes.route("/").get(function (req, res) {
-  Todo.find(function (err, todos) {
+teamRoutes.route("/").get(function (req, res) {
+  Team.find(function (err, teams) {
     if (err) {
       console.log(err);
     } else {
-      res.json(todos);
+      res.json(teams);
     }
   });
 });
 
-todoRoutes.route("/:id").get(function (req, res) {
+teamRoutes.route("/:id").get(function (req, res) {
   let id = req.params.id;
-  Todo.findById(id, function (err, todos) {
-    res.json(todos);
+  Team.findById(id, function (err, teams) {
+    res.json(teams);
   });
 });
 
-todoRoutes.route("/:id").put(function (req, res) {
+teamRoutes.route("/:id").put(function (req, res) {
   console.log(req.params.id);
-  Todo.findOneAndUpdate({ _id: req.params.id }, req.body, {
+  Team.findOneAndUpdate({ _id: req.params.id }, req.body, {
     new: true,
   }).then((response) => {
     console.log(response);
@@ -52,27 +52,27 @@ todoRoutes.route("/:id").put(function (req, res) {
   });
 });
 
-todoRoutes.route("/:id").delete(function (req, res) {
+teamRoutes.route("/:id").delete(function (req, res) {
   console.log(req.params.id);
-  Todo.findById({ _id: req.params.id })
+  Team.findById({ _id: req.params.id })
     .then((dbModel) => dbModel.remove())
     .then((dbModel) => res.json(dbModel))
     .catch((err) => res.status(422).json(err));
 });
 
-todoRoutes.route("/add").post(function (req, res) {
-  let todos = new Todo(req.body);
-  todos
+teamRoutes.route("/add").post(function (req, res) {
+  let teams = new Team(req.body);
+  teams
     .save()
-    .then((todos) => {
-      res.status(200).json({ todo: "todo added successfully" });
+    .then((teams) => {
+      res.status(200).json({ todo: "team added successfully" });
     })
     .catch((err) => {
-      res.status(400).send("adding new todo failed");
+      res.status(400).send("adding new team failed");
     });
 });
 
-app.use("/todos", todoRoutes);
+app.use("/teams", teamRoutes);
 app.use("/users", require("./routes/user"));
 
 app.listen(PORT, function () {
