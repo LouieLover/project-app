@@ -5,7 +5,7 @@ import Axios from "axios";
 import ErrorNotice from "../misc/ErrorNotice";
 
 export default function Login() {
-  const [email, setEmail] = useState();
+  const [username, setUsername] = useState();
   const [password, setPassword] = useState();
   const [error, setError] = useState();
 
@@ -15,7 +15,7 @@ export default function Login() {
   const submit = async (e) => {
     e.preventDefault();
     try {
-      const loginUser = { email, password };
+      const loginUser = { username, password };
       const loginRes = await Axios.post("user/login/", loginUser);
       setUserData({
         token: loginRes.data.token,
@@ -24,7 +24,6 @@ export default function Login() {
       localStorage.setItem("auth-token", loginRes.data.token);
       history.push("/");
     } catch (err) {
-      console.log(err);
       err.response.data.msg && setError(err.response.data.msg);
     }
   };
@@ -35,11 +34,11 @@ export default function Login() {
         <ErrorNotice message={error} clearError={() => setError(undefined)} />
       )}
       <form className="form" onSubmit={submit}>
-        <label htmlFor="login-email">Username</label>
+        <label htmlFor="login-username">Username</label>
         <input
-          id="login-email"
-          type="email"
-          onChange={(e) => setEmail(e.target.value)}
+          id="login-username"
+          type="username"
+          onChange={(e) => setUsername(e.target.value)}
         />
 
         <label htmlFor="login-password">Password</label>

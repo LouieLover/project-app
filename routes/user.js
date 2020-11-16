@@ -8,36 +8,29 @@ require("dotenv").config();
 router.post("/register", async (req, res) => {
   console.log(req.body);
   try {
-    let { email, password, passwordCheck, displayName } = req.body;
+    let { username, password } = req.body;
 
     // validate
 
-    if (!email || !password || !passwordCheck)
-      return res.status(400).json({ msg: "Not all fields have been entered." });
-    if (password.length < 5)
+    if (!username || !password)
+      return res.status(400).json({ msg: "enter username and password" });
+    if (password.length < 4)
       return res
         .status(400)
         .json({ msg: "The password needs to be at least 5 characters long." });
-    if (password !== passwordCheck)
-      return res
-        .status(400)
-        .json({ msg: "Enter the same password twice for verification." });
 
-    const existingUser = await User.findOne({ email: email });
+    const existingUser = await User.findOne({ username: username });
     if (existingUser)
       return res
         .status(400)
-        .json({ msg: "An account with this email already exists." });
-
-    if (!displayName) displayName = email;
+        .json({ msg: "An account with this username already exists." });
 
     const salt = await bcrypt.genSalt();
     const passwordHash = await bcrypt.hash(password, salt);
 
     const newUser = new User({
-      email,
+      username,
       password: passwordHash,
-      displayName,
     });
     const savedUser = await newUser.save();
     res.json(savedUser);
@@ -49,13 +42,13 @@ router.post("/register", async (req, res) => {
 
 router.post("/login", async (req, res) => {
   try {
-    const { email, password } = req.body;
+    const { username, password } = req.body;
 
     // validate
-    if (!email || !password)
-      return res.status(400).json({ msg: "Not all fields have been entered." });
+    if (!username || !password)
+      return res.status(400).json({ msg: "Enter username and password." });
 
-    const user = await User.findOne({ email: email });
+    const user = await User.findOne({ username: username });
     if (!user)
       return res
         .status(400)

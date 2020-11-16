@@ -2,12 +2,11 @@ import React, { useState, useContext } from "react";
 import { useHistory } from "react-router-dom";
 import UserContext from "../../context/userContext";
 import Axios from "axios";
-import ErrorNotice from "../misc/ErrorNotice";
+// import ErrorNotice from "../misc/ErrorNotice";
 
 export default function Register() {
   const [username, setUsername] = useState();
   const [password, setPassword] = useState();
-
   const [error, setError] = useState();
 
   const { setUserData } = useContext(UserContext);
@@ -18,8 +17,8 @@ export default function Register() {
 
     try {
       const newUser = { username, password };
-      await Axios.post("/users/register/", newUser);
-      const loginRes = await Axios.post("/users/login/", {
+      await Axios.post("/user/register/", newUser);
+      const loginRes = await Axios.post("/user/login/", {
         username,
         password,
       });
@@ -37,14 +36,14 @@ export default function Register() {
   return (
     <div className="page">
       <h2>Register</h2>
-      {error && (
+      {/* {error && (
         <ErrorNotice message={error} clearError={() => setError(undefined)} />
-      )}
+      )} */}
       <form className="form" onSubmit={submit}>
-        <label htmlFor="register-email">Username</label>
+        <label htmlFor="username">username</label>
         <input
-          id="register-email"
-          type="email"
+          id="username"
+          type="username"
           onChange={(e) => setUsername(e.target.value)}
         />
 
