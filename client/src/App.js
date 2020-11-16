@@ -66,7 +66,7 @@ function App() {
   return (
     <Router>
       <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href="login">
           SportsMeet
         </a>
         <button
@@ -88,7 +88,7 @@ function App() {
               </a>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/create">
+              <a className="nav-link" href="/teams">
                 Team List
               </a>
             </li>
@@ -110,7 +110,7 @@ function App() {
       <UserContext.Provider value={{ userData, setUserData }}>
         <Route path="/login" component={Login} />
         <Route path="/register" component={Register} />
-        <Route path="/create" exact component={TeamList} />
+        <Route path="/teams" exact component={TeamList} />
         <Route path="/edit/:id" component={EditTeam} />
         <Route path="/user" component={CreateTeam} />
       </UserContext.Provider>
